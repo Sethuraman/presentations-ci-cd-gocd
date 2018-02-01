@@ -1,0 +1,16 @@
+godata/addons/
+godata/artifacts
+godata/config/cruise-config.xml
+godata/db/
+godata/logs
+godata/plugins/bundled
+godata/plugins/*.zip
+godata/config/agentkeystore
+godata/config/cipher
+godata/config/cruise-config.xsd
+godata/config/go_update_server.pub
+godata/config/jetty.xml
+godata/config/keystore
+godata/config/logback-include.xml
+godata/config/truststore
+.ssh

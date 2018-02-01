@@ -1,0 +1,28 @@
+FROM gocd/gocd-agent-debian-8:v17.12.0
+
+ENV SERVERLESS_VERSION 1.25.0
+
+ARG NODE_VERSION=9.4.0
+
+WORKDIR /opt/
+ADD https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz node-v$NODE_VERSION-linux-x64.tar.xz
+
+RUN apt update && \
+    apt install -y xz-utils bzip2 build-essential curl jq python-dev && \
+    tar -xf node-v$NODE_VERSION-linux-x64.tar.xz && \
+    mkdir /root/.aws && \
+    curl -s https://bootstrap.pypa.io/get-pip.py | python && \
+    pip install \
+      awscli \
+      boto3 \
+      pep8 \
+      pytest \
+      pytest-cov \
+      pytest-mock
+
+ENV PATH="/opt/node-v9.4.0-linux-x64/bin/:${PATH}"
+
+RUN npm install \
+    cfn-create-or-update@1.1.2 \
+    serverless@${SERVERLESS_VERSION} \
+    -g
