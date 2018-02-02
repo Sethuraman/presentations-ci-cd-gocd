@@ -18,7 +18,7 @@ RUN apt update && \
       pep8 \
       pytest \
       pytest-cov \
-      pytest-mock
+      pytest-mock 
 
 ENV PATH="/opt/node-v9.4.0-linux-x64/bin/:${PATH}"
 
