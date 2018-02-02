@@ -12,11 +12,12 @@ services:
       AGENT_AUTO_REGISTER_ENVIRONMENTS: ci
     volumes:
       - $PWD/.ssh:/home/go/.ssh
+      - $PWD/godata-node:/godata
 
   server:
     image: gocd/gocd-server:v17.12.0
     volumes:
-      - $PWD/godata:/godata
+      - $PWD/godata-server:/godata
       - $PWD/.ssh:/home/go/.ssh
     ports:
       - "8153:8153"
