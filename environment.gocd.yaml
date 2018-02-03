@@ -4,3 +4,4 @@ environments:
     pipelines:
       - "calculator-webapp"
       - "calculator-service"
+      - "calculator-functional-tests"
