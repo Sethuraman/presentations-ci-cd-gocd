@@ -3,7 +3,7 @@ pipelines:
   "calculator-service":
     group: presentations-ci-cd
     materials:
-      calculator-webapp:
+      calculator-service:
         git: "git@github.com:Sethuraman/presentations-ci-cd-calculator-service.git"
     stages:
       - unit-test:
@@ -25,3 +25,52 @@ pipelines:
                 - script: |
                     npm install
                     npm run integration-tests-launcher
+
+  "deploy-calculator-service-staging":
+    group: presentations-ci-cd
+    materials:
+      webapp-functional-tests-upstream:
+        pipeline: calculator-functional-tests
+        stage: functional-test
+      calculator-service:
+        git: "git@github.com:Sethuraman/presentations-ci-cd-calculator-service.git"  
+
+    stages:
+      - deploy:
+          jobs:
+            deploy:
+              tasks:
+                - script: |
+                    ls
+
+      - sanity-check:
+          jobs: 
+            test:
+              tasks:
+                - script: |
+                    echo "sanity check the web app"
+                          
+  "deploy-calculator-service-production":
+    group: presentations-ci-cd
+    materials:
+      webapp-functional-tests-upstream:
+        pipeline: deploy-calculator-service-staging
+        stage: sanity-check
+      calculator-service:
+        git: "git@github.com:Sethuraman/presentations-ci-cd-calculator-service.git"  
+
+    stages:
+      - deploy:
+          approval: manual
+          jobs:
+            deploy:
+              tasks:
+                - script: |
+                    ls dist
+
+      - sanity-check:
+          jobs: 
+            test:
+              tasks:
+                - script: |
+                    echo "sanity check the web app"                     
