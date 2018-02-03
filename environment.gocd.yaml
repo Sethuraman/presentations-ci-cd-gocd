@@ -6,3 +6,4 @@ environments:
       - "calculator-service"
       - "calculator-functional-tests"
       - "deploy-calculator-webapp-staging"
+      - "deploy-calculator-webapp-production"

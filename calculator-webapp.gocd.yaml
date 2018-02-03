@@ -49,6 +49,42 @@ pipelines:
                     source: dist
                     destination: dist
                 - script: |
-                    ls dist    
+                    ls dist
+
+      - sanity-check:
+          jobs: 
+            test:
+              tasks:
+                - script: |
+                    echo "sanity check the web app"
+                          
+  "deploy-calculator-webapp-production":
+    group: presentations-ci-cd
+    materials:
+      webapp-functional-tests-upstream:
+        pipeline: deploy-calculator-webapp-staging
+        stage: sanity-check
+
+    stages:
+      - deploy:
+          jobs:
+            deploy:
+              tasks:
+                - fetch:
+                    pipeline: calculator-webapp/calculator-functional-tests/deploy-calculator-webapp-staging
+                    stage: build
+                    job: build
+                    is_file: false
+                    source: dist
+                    destination: dist
+                - script: |
+                    ls dist
+
+      - sanity-check:
+          jobs: 
+            test:
+              tasks:
+                - script: |
+                    echo "sanity check the web app"                          
 
       
