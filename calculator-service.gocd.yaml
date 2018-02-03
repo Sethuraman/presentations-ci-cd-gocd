@@ -34,6 +34,9 @@ pipelines:
         stage: functional-test
       calculator-service:
         git: "git@github.com:Sethuraman/presentations-ci-cd-calculator-service.git"  
+      service-checkin-upstream:
+        pipeline: calculator-service
+        stage: integration-test   
 
     stages:
       - deploy:
@@ -66,7 +69,7 @@ pipelines:
               tasks:
                 - script: |
                     echo "dummy stage to allow manual approval to deploy to prod"
-                    
+
       - deploy:
           approval: manual
           jobs:
