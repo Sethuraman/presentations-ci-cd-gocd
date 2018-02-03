@@ -42,7 +42,7 @@ pipelines:
             deploy:
               tasks:
                 - fetch:
-                    pipeline: calculator-webapp
+                    pipeline: calculator-webapp/calculator-functional-tests
                     stage: build
                     job: build
                     is_file: false
