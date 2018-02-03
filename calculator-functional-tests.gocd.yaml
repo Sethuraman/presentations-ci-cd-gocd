@@ -1,0 +1,21 @@
+format_version: 2
+pipelines:
+  "calculator-functional-tests":
+    group: presentations-ci-cd
+    materials:
+      webapp-upstream:
+        pipeline: calculator-webapp
+        stage: build
+      service-upstream:
+        pipeline: calculator-service
+        stage: integration-test
+
+    stages:
+      - functional-test:
+          jobs:
+            test:
+              resources:
+                - node
+              tasks:
+                - script: |
+                    echo "run functional test here"
