@@ -28,3 +28,27 @@ pipelines:
                 - script: |
                     yarn install
                     yarn run build
+
+  "deploy-calculator-webapp-staging":
+    group: presentations-ci-cd
+      materials:
+        webapp-functional-tests-upstream:
+          pipeline: calculator-functional-tests
+          stage: functional-test
+
+    stages:
+      - deploy:
+          jobs:
+            deploy:
+              tasks:
+                - fetch:
+                    pipeline: calculator-webapp
+                    stage: build
+                    job: build
+                    is_file: false
+                    source: dist
+                    destination: dist
+                - script: |
+                    ls dist    
+
+      
