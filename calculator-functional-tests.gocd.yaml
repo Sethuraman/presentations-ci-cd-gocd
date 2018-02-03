@@ -5,7 +5,7 @@ pipelines:
     materials:
       webapp-upstream:
         pipeline: calculator-webapp
-        stage: build
+        stage: test
       service-upstream:
         pipeline: calculator-service
         stage: integration-test
