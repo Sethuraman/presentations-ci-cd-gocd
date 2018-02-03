@@ -3,3 +3,4 @@ environments:
   ci:
     pipelines:
       - "calculator-webapp"
+      - "calculator-service"
