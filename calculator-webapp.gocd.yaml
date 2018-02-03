@@ -15,19 +15,6 @@ pipelines:
                 - script: |
                     yarn install
                     yarn run test_with_coverage
-      - build:
-          jobs:
-            build:
-              artifacts:
-                - build:
-                    source: build
-                    destination: dist
-              resources:
-                - node
-              tasks:
-                - script: |
-                    yarn install
-                    yarn run build
 
   "deploy-calculator-webapp-staging":
     group: presentations-ci-cd
@@ -38,22 +25,29 @@ pipelines:
       webapp-checkin-upstream:
         pipeline: calculator-webapp
         stage: build
+      calculator-webapp:
+        git: "git@github.com:Sethuraman/presentations-ci-cd-calculator-webapp.git"  
 
     stages:
+      - buildForStaging:
+          jobs:
+            build:
+              resources:
+                - node
+              tasks:
+                - script: |
+                    yarn install
+                    REACT_APP_API_URL="https://rnh5t2hzb3.execute-api.ap-south-1.amazonaws.com/dev" yarn run build
+
       - deploy:
           jobs:
             deploy:
+              resources:
+                - node
               tasks:
-                - fetch:
-                    pipeline: calculator-webapp/calculator-functional-tests
-                    stage: build
-                    job: build
-                    is_file: false
-                    source: dist
-                    destination: dist
                 - script: |
-                    ls dist
-
+                     sh ./infra-cloudformation/deploy.sh staging            
+              
       - sanity-check:
           jobs: 
             test:
@@ -67,35 +61,35 @@ pipelines:
       webapp-functional-tests-upstream:
         pipeline: deploy-calculator-webapp-staging
         stage: sanity-check
+      calculator-webapp:
+        git: "git@github.com:Sethuraman/presentations-ci-cd-calculator-webapp.git"  
 
     stages:
-      - waitForApproval:
+      - buildForProduction:
           jobs:
-            wait:
+            build:
+              resources:
+                - node
               tasks:
                 - script: |
-                    echo "dummy stage to allow manual approval to deploy to prod"
+                    yarn install
+                    REACT_APP_API_URL="https://rnh5t2hzb3.execute-api.ap-south-1.amazonaws.com/dev" yarn run build
 
       - deploy:
           approval: manual
           jobs:
             deploy:
+              resources:
+                - node
               tasks:
-                - fetch:
-                    pipeline: calculator-webapp/calculator-functional-tests/deploy-calculator-webapp-staging
-                    stage: build
-                    job: build
-                    is_file: false
-                    source: dist
-                    destination: dist
                 - script: |
-                    ls dist
-
+                     sh ./infra-cloudformation/deploy.sh prod            
+              
       - sanity-check:
           jobs: 
             test:
               tasks:
                 - script: |
-                    echo "sanity check the web app"                          
+                    echo "sanity check the web app"                         
 
       
