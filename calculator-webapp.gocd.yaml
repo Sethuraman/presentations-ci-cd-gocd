@@ -67,6 +67,7 @@ pipelines:
 
     stages:
       - deploy:
+          approval: manual
           jobs:
             deploy:
               tasks:
