@@ -6,7 +6,7 @@ pipelines:
       calculator-webapp:
         git: "git@github.com:Sethuraman/presentations-ci-cd-calculator-service.git"
     stages:
-      - test:
+      - unit-test:
           jobs:
             test:
               resources:
@@ -14,4 +14,14 @@ pipelines:
               tasks:
                 - script: |
                     npm install
-                    npm run test
+                    npm run test-unit
+        
+      - integration-test:
+          jobs:
+            test:
+              resources:
+                - node
+              tasks:
+                - script: |
+                    npm install
+                    npm run integration-tests-launcher
