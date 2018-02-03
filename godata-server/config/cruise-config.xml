@@ -5,31 +5,10 @@
     <config-repo pluginId="yaml.config.plugin" id="daaa9307-f96b-4d6f-9056-68cd79453280">
       <git url="git@github.com:Sethuraman/presentations-ci-cd-gocd.git" />
     </config-repo>
-    <config-repo pluginId="yaml.config.plugin" id="eaaa9307-f96b-4d6f-9056-68cd79453280">
-      <git url="git@github.com:Sethuraman/presentations-ci-cd-calculator-webapp.git" />
-    </config-repo>
   </config-repos>
   <pipelines group="presentations-ci-cd" />
   <environments>
     <environment name="ci">
-      <environmentvariables>
-        <variable name="AWS_ACCESS_STAGING_KEY" secure="true">
-          <encryptedValue>/8bNr017FEIybWsIiuJbLIvWFO5mRpOu</encryptedValue>
-        </variable>
-        <variable name="AWS_SECRET_STAGING_KEY" secure="true">
-          <encryptedValue>s7dh8rSQ5g3mgzp/M6GjTEUt7aYPYPnpZ0nVcZ/my4NdLiD0wLxOM8ev9XSBYCQb</encryptedValue>
-        </variable>
-      </environmentvariables>
-      <agents>
-        <physical uuid="f7e6aaed-744f-4849-8d6f-295a02d7465b" />
-      </agents>
     </environment>
   </environments>
-  <agents>
-    <agent hostname="fe737b0aca1f" ipaddress="172.20.0.3" uuid="f7e6aaed-744f-4849-8d6f-295a02d7465b">
-      <resources>
-        <resource>node</resource>
-      </resources>
-    </agent>
-  </agents>
 </cruise>
