@@ -60,6 +60,7 @@ pipelines:
         git: "git@github.com:Sethuraman/presentations-ci-cd-calculator-service.git"  
 
     stages:
+      - waitForApproval:
       - deploy:
           approval: manual
           jobs:

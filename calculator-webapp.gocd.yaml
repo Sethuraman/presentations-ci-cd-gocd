@@ -68,6 +68,8 @@ pipelines:
         stage: sanity-check
 
     stages:
+      - waitForApproval:
+          
       - deploy:
           approval: manual
           jobs:
