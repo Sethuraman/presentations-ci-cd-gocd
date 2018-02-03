@@ -8,12 +8,20 @@
     <config-repo pluginId="yaml.config.plugin" id="eaaa9307-f96b-4d6f-9056-68cd79453280">
       <git url="git@github.com:Sethuraman/presentations-ci-cd-calculator-webapp.git" />
     </config-repo>
-    <!-- <config-repo pluginId="yaml.config.plugin" id="faaa9307-f96b-4d6f-9056-68cd79453280">
-      <git url="git@github.com:Sethuraman/presentations-ci-cd-calculator-service.git" />
-    </config-repo> -->
   </config-repos>
   <pipelines group="presentations-ci-cd" />
   <environments>
-    <environment name="ci" />
+    <environment name="ci">
+      <agents>
+        <physical uuid="adde575e-8e5f-41e9-b640-b60a20def7c8" />
+      </agents>
+    </environment>
   </environments>
+  <agents>
+    <agent hostname="5f672aed93fd" ipaddress="172.20.0.3" uuid="adde575e-8e5f-41e9-b640-b60a20def7c8">
+      <resources>
+        <resource>node</resource>
+      </resources>
+    </agent>
+  </agents>
 </cruise>
