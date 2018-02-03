@@ -8,7 +8,11 @@ WORKDIR /opt/
 ADD https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz node-v$NODE_VERSION-linux-x64.tar.xz
 
 RUN apt update && \
-    apt install -y xz-utils bzip2 build-essential curl jq python-dev && \
+    apt install apt-transport-https && \
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+    apt update && \
+    apt install -y xz-utils bzip2 build-essential curl jq python-dev yarn && \
     tar -xf node-v$NODE_VERSION-linux-x64.tar.xz && \
     mkdir /root/.aws && \
     curl -s https://bootstrap.pypa.io/get-pip.py | python && \

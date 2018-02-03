@@ -13,8 +13,8 @@ pipelines:
                 - node
               tasks:
                 - script: |
-                    npm install
-                    npm run test_with_coverage
+                    yarn install
+                    yarn run test_with_coverage
       - build:
           jobs:
             build:
@@ -26,5 +26,5 @@ pipelines:
                 - node
               tasks:
                 - script: |
-                    npm install
-                    npm run build
+                    yarn install
+                    yarn run build
