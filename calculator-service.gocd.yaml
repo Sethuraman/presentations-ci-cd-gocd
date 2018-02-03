@@ -67,7 +67,7 @@ pipelines:
             deploy:
               tasks:
                 - script: |
-                    ls dist
+                    ls
 
       - sanity-check:
           jobs: 
