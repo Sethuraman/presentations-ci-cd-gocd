@@ -61,6 +61,12 @@ pipelines:
 
     stages:
       - waitForApproval:
+          jobs:
+            wait:
+              tasks:
+                - script: |
+                    echo "dummy stage to allow manual approval to deploy to prod"
+                    
       - deploy:
           approval: manual
           jobs:
