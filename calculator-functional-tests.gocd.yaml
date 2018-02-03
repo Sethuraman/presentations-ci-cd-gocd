@@ -4,10 +4,10 @@ pipelines:
     group: presentations-ci-cd
     materials:
       webapp-upstream:
-        pipeline: calculator-webapp
+        pipeline: unit-test-webapp
         stage: test
       service-upstream:
-        pipeline: calculator-service
+        pipeline: test-service
         stage: integration-test
 
     stages:

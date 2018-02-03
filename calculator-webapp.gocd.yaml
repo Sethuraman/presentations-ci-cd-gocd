@@ -1,6 +1,6 @@
 format_version: 2
 pipelines:
-  "calculator-webapp":
+  "unit-test-webapp":
     group: presentations-ci-cd
     materials:
       calculator-webapp:
@@ -16,16 +16,16 @@ pipelines:
                     yarn install
                     yarn run test_with_coverage
 
-  "deploy-calculator-webapp-staging":
+  "staging-deploy-webapp":
     group: presentations-ci-cd
     materials:
       webapp-functional-tests-upstream:
         pipeline: calculator-functional-tests
         stage: functional-test
       webapp-checkin-upstream:
-        pipeline: calculator-webapp
+        pipeline: unit-test-webapp
         stage: test
-      calculator-webapp:
+      staging-git:
         git: "git@github.com:Sethuraman/presentations-ci-cd-calculator-webapp.git"  
 
     stages:
@@ -55,13 +55,13 @@ pipelines:
                 - script: |
                     echo "sanity check the web app"
                           
-  "deploy-calculator-webapp-production":
+  "prod-deploy-webapp":
     group: presentations-ci-cd
     materials:
       webapp-functional-tests-upstream:
-        pipeline: deploy-calculator-webapp-staging
+        pipeline: staging-deploy-webapp
         stage: sanity-check
-      calculator-webapp:
+      production-git:
         git: "git@github.com:Sethuraman/presentations-ci-cd-calculator-webapp.git"  
 
     stages:
