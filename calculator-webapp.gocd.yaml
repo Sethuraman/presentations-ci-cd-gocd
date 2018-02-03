@@ -31,10 +31,10 @@ pipelines:
 
   "deploy-calculator-webapp-staging":
     group: presentations-ci-cd
-      materials:
-        webapp-functional-tests-upstream:
-          pipeline: calculator-functional-tests
-          stage: functional-test
+    materials:
+      webapp-functional-tests-upstream:
+        pipeline: calculator-functional-tests
+        stage: functional-test
 
     stages:
       - deploy:
