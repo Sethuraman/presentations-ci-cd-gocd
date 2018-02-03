@@ -24,7 +24,7 @@ pipelines:
         stage: functional-test
       webapp-checkin-upstream:
         pipeline: calculator-webapp
-        stage: build
+        stage: test
       calculator-webapp:
         git: "git@github.com:Sethuraman/presentations-ci-cd-calculator-webapp.git"  
 
