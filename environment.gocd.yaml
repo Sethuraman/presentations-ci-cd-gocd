@@ -2,10 +2,10 @@ format_version: 2
 environments:
   ci:
     pipelines:
-      - "calculator-webapp"
-      - "calculator-service"
+      - "test-service"
+      - "staging-deploy-service"
+      - "production-deploy-service"
+      - "unit-test-webapp"
+      - "staging-deploy-webapp"
+      - "prod-deploy-webapp"
       - "calculator-functional-tests"
-      - "deploy-calculator-webapp-staging"
-      - "deploy-calculator-webapp-production"
-      - "deploy-calculator-service-staging"
-      - "deploy-calculator-service-production"

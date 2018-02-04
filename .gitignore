@@ -20,12 +20,6 @@ godata-node/db/
 godata-node/logs
 godata-node/plugins/bundled
 godata-node/plugins/*.zip
-godata-node/config/agentkeystore
-godata-node/config/cipher
-godata-node/config/cruise-config.xsd
-godata-node/config/go_update_server.pub
-godata-node/config/jetty.xml
-godata-node/config/keystore
-godata-node/config/logback-include.xml
-godata-node/config/truststore
+godata-node/config/
+godata-node/pipelines/
 .ssh
