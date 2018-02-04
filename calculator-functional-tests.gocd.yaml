@@ -11,8 +11,10 @@ pipelines:
         stage: integration-test
       webapp-git:
         git: "git@github.com:Sethuraman/presentations-ci-cd-calculator-webapp.git"
+        destination: webapp
       service-git:
         git: "git@github.com:Sethuraman/presentations-ci-cd-calculator-service.git"    
+        destination: service
 
     stages:
       - functional-test:
