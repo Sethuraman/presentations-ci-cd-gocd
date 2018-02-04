@@ -29,4 +29,5 @@ ENV PATH="/opt/node-v9.4.0-linux-x64/bin/:${PATH}"
 RUN npm install \
     cfn-create-or-update@1.1.2 \
     serverless@${SERVERLESS_VERSION} \
+    http-server \
     -g

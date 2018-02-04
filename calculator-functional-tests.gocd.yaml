@@ -9,6 +9,10 @@ pipelines:
       service-upstream:
         pipeline: test-service
         stage: integration-test
+      webapp-git:
+        git: "git@github.com:Sethuraman/presentations-ci-cd-calculator-webapp.git"
+      service-git:
+        git: "git@github.com:Sethuraman/presentations-ci-cd-calculator-service.git"    
 
     stages:
       - functional-test:
@@ -18,4 +22,6 @@ pipelines:
                 - node
               tasks:
                 - script: |
+                    pwd
                     echo "run functional test here"
+                    ls
