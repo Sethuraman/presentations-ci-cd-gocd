@@ -75,7 +75,7 @@ pipelines:
               tasks:
                 - script: |
                     yarn install
-                    REACT_APP_API_URL="https://rnh5t2hzb3.execute-api.ap-south-1.amazonaws.com/dev" yarn run build
+                    REACT_APP_API_URL="https://y4ijbwtqp8.execute-api.ap-south-1.amazonaws.com/dev" yarn run build
 
       - deploy:
           approval: manual
