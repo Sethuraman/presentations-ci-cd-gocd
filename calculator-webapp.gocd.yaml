@@ -46,7 +46,9 @@ pipelines:
                 - node
               tasks:
                 - script: |
-                     sh ./infra-cloudformation/deploy.sh staging            
+                    pwd
+                    ls
+                    sh ./infra-cloudformation/deploy.sh staging            
               
       - sanity-check:
           jobs: 
