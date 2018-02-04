@@ -12,7 +12,7 @@ RUN apt update && \
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
     apt update && \
-    apt install -y xz-utils bzip2 build-essential curl jq python-dev yarn && \
+    apt install -y xz-utils bzip2 build-essential curl jq python-dev yarn docker.io && \
     tar -xf node-v$NODE_VERSION-linux-x64.tar.xz && \
     mkdir /root/.aws && \
     curl -s https://bootstrap.pypa.io/get-pip.py | python && \
@@ -22,7 +22,9 @@ RUN apt update && \
       pep8 \
       pytest \
       pytest-cov \
-      pytest-mock 
+      pytest-mock && \
+    sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose && \
+    chmod +x /usr/local/bin/docker-compose
 
 ENV PATH="/opt/node-v9.4.0-linux-x64/bin/:${PATH}"
 

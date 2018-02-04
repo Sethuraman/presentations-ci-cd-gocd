@@ -15,15 +15,16 @@ pipelines:
       service-git:
         git: "git@github.com:Sethuraman/presentations-ci-cd-calculator-service.git"    
         destination: service
+      funcational-tests-git:
+        git: "git@github.com:Sethuraman/presentations-ci-cd-functional-tests.git"    
+        destination: functional-tests  
 
     stages:
       - functional-test:
           jobs:
             test:
               resources:
-                - node
+                - mac
               tasks:
                 - script: |
-                    pwd
-                    echo "run functional test here"
-                    ls
+                    sh -x functional-tests/runFunctionalTests.sh
