@@ -26,7 +26,7 @@ pipelines:
                     npm install
                     npm run integration-tests-launcher
 
-  "staging-deploy-service":
+  "development-deploy-service":
     group: presentations-ci-cd
     materials:
       service-checkin-upstream:
@@ -46,6 +46,41 @@ pipelines:
               tasks:
                 - script: |
                     npm install
+                    export AWS_ACCESS_KEY_ID=$AWS_ACCESS_DEVELOPMENT_KEY
+                    export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_DEVELOPMENT_KEY
+                    serverless deploy --verbose
+
+      - sanity-check:
+          jobs: 
+            test:
+              tasks:
+                - script: |
+                    echo "sanity check the web app"
+
+  "staging-deploy-service":
+    group: presentations-ci-cd
+    materials:
+      development-deploy-upstream:
+        pipeline: development-deploy-service
+        stage: sanity-check   
+      git-repo:
+        git: "git@github.com:Sethuraman/presentations-ci-cd-calculator-service.git"  
+      
+
+    stages:
+      - waitForApproval:
+          jobs:
+            wait:
+              tasks:
+                - script: |
+                    echo "dummy stage to allow manual approval to deploy to staging"
+      
+      - deploy:
+          jobs:
+            deploy:
+              tasks:
+                - script: |
+                    npm install
                     export AWS_ACCESS_KEY_ID=$AWS_ACCESS_STAGING_KEY
                     export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_STAGING_KEY
                     serverless deploy --verbose
@@ -55,7 +90,7 @@ pipelines:
             test:
               tasks:
                 - script: |
-                    echo "sanity check the web app"
+                    echo "sanity check the web app"                  
                           
   "production-deploy-service":
     group: presentations-ci-cd
