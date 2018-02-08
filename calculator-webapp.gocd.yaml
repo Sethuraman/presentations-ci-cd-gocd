@@ -1,7 +1,7 @@
 format_version: 2
 pipelines:
-  "build-unit-tests":
-    group: presentations-ci-cd
+  "unit-test-webapp":
+    group: build-unit-tests
     materials:
       calculator-webapp:
         git: "git@github.com:Sethuraman/presentations-ci-cd-calculator-webapp.git"
