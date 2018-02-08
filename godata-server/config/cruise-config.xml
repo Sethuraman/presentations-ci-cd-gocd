@@ -6,7 +6,9 @@
       <git url="git@github.com:Sethuraman/presentations-ci-cd-gocd.git" />
     </config-repo>
   </config-repos>
-  <pipelines group="presentations-ci-cd" />
+  <pipelines group="build-unit-tests" />
+  <pipelines group="functional-tests" />
+  <pipelines group="deployments" />
   <environments>
     <environment name="ci">
     </environment>

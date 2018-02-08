@@ -1,7 +1,7 @@
 format_version: 2
 pipelines:
   "calculator-functional-tests":
-    group: presentations-ci-cd
+    group: functional-tests
     materials:
       webapp-upstream:
         pipeline: unit-test-webapp

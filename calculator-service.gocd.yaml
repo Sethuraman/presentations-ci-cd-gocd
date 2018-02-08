@@ -1,7 +1,7 @@
 format_version: 2
 pipelines:
   "test-service":
-    group: presentations-ci-cd
+    group: build-unit-tests
     materials:
       calculator-service:
         git: "git@github.com:Sethuraman/presentations-ci-cd-calculator-service.git"
@@ -27,7 +27,7 @@ pipelines:
                     npm run integration-tests-launcher
 
   "development-deploy-service":
-    group: presentations-ci-cd
+    group: deployments
     materials:
       service-checkin-upstream:
         pipeline: test-service
@@ -58,7 +58,7 @@ pipelines:
                     echo "sanity check the web app"
 
   "staging-deploy-service":
-    group: presentations-ci-cd
+    group: deployments
     materials:
       development-deploy-upstream:
         pipeline: development-deploy-service
@@ -93,7 +93,7 @@ pipelines:
                     echo "sanity check the web app"                  
                           
   "production-deploy-service":
-    group: presentations-ci-cd
+    group: deployments
     materials:
       staging-deploy-upstream:
         pipeline: staging-deploy-service

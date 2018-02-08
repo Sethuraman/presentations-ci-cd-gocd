@@ -1,6 +1,6 @@
 format_version: 2
 pipelines:
-  "unit-test-webapp":
+  "build-unit-tests":
     group: presentations-ci-cd
     materials:
       calculator-webapp:
@@ -17,7 +17,7 @@ pipelines:
                     yarn run test_with_coverage
 
   "development-deploy-webapp":
-    group: presentations-ci-cd
+    group: deployments
     materials:
       webapp-functional-tests-upstream:
         pipeline: calculator-functional-tests
@@ -58,7 +58,7 @@ pipelines:
                     echo "sanity check the web app"
 
   "staging-deploy-webapp":
-    group: presentations-ci-cd
+    group: deployments
     materials:
       development-deploy-upstream:
         pipeline: development-deploy-webapp
@@ -97,7 +97,7 @@ pipelines:
                     echo "sanity check the web app"                  
                           
   "prod-deploy-webapp":
-    group: presentations-ci-cd
+    group: deployments
     materials:
       staging-deploy-upstream:
         pipeline: staging-deploy-webapp
