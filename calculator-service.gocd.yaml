@@ -76,6 +76,7 @@ pipelines:
                     echo "dummy stage to allow manual approval to deploy to staging"
       
       - deploy:
+          approval: manual
           jobs:
             deploy:
               tasks:
