@@ -4,8 +4,11 @@ environments:
     pipelines:
       - "test-service"
       - "staging-deploy-service"
+      - "development-deploy-service"
       - "production-deploy-service"
       - "unit-test-webapp"
       - "staging-deploy-webapp"
+      - "development-deploy-webapp"
       - "prod-deploy-webapp"
       - "calculator-functional-tests"
+    
